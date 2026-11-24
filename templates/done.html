@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section narrow">
+  <div class="panel center">
+    <div class="done-icon">✅</div>
+    <h1>Buyurtma qabul qilindi</h1>
+    <p class="muted">{{ name }}, «{{ topic }}» mavzusi bo'yicha {{ item.name|lower }} buyurtmasi qabul qilindi.</p>
+    <div class="done-actions">
+      <a class="btn" href="{{ url_for('my_orders') }}">Buyurtmalarim</a>
+      <a class="btn ghost" href="{{ url_for('index') }}">Bosh sahifa</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

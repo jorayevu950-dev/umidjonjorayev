@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hello">
+    <div class="avatar">{{ (name[:1] or "T")|upper }}</div>
+    <div>
+      <div class="hi-muted">Xush kelibsiz</div>
+      <h1>{% if name %}Assalomu alaykum, {{ name }}!{% else %}Assalomu alaykum!{% endif %}</h1>
+      <p class="muted">Bugun nima tayyorlaymiz?</p>
+    </div>
+    <form class="name-form" method="post" action="{{ url_for('index') }}">
+      <input type="text" name="name" maxlength="40" placeholder="Ismingizni yozing" value="{{ name }}">
+      <button type="submit">Saqlash</button>
+    </form>
+  </div>
+
+  <div class="cards">
+    <div class="card how-card">
+      <div class="muted">Qanday ishlaydi</div>
+      <div class="how">
+        <div><span class="how-num">1</span> Xizmatni tanlang</div>
+        <div><span class="how-num">2</span> Mavzuni yozing</div>
+        <div><span class="how-num">3</span> Faylni yuklab oling</div>
+      </div>
+    </div>
+    <div class="card stat">
+      <div class="muted">Bugungi buyurtmalar</div>
+      <div class="stat-num">{{ recent|length }}</div>
+      <div class="muted small">Oxirgi 6 ta ko'rsatilgan</div>
+    </div>
+    <div class="card promo">
+      <div class="promo-title">Har bir slaydda rasm</div>
+      <p>Prezentatsiya buyurtma qilsangiz, har bir slaydga mavzuga mos rasm qo'shiladi.</p>
+      <a class="btn" href="{{ url_for('service', slug='prezentatsiya') }}">Buyurtma berish</a>
+    </div>
+  </div>
+</section>
+
+<section id="xizmatlar" class="section">
+  <div class="section-head">
+    <h2>Xizmatlar</h2>
+    <span class="muted">15 ta xizmat — bir tugma bilan</span>
+  </div>
+  <div class="grid">
+    {% for s in services %}
+    <a class="tile" href="{{ url_for('service', slug=s.slug) }}">
+      <span class="tile-icon">{{ s.icon }}</span>
+      <span class="tile-name">{{ s.name }}</span>
+      <span class="tile-hint">{{ s.hint }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><h2>Oxirgi buyurtmalar</h2></div>
+  {% if recent %}
+  <table class="table">
+    <thead><tr><th>Xizmat</th><th>Mavzu</th><th>Sana</th></tr></thead>
+    <tbody>
+    {% for r in recent %}
+      <tr><td>{{ r.service }}</td><td>{{ r.topic }}</td><td class="muted">{{ r.created_at }}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty">Hozircha buyurtma yo'q. Yuqoridan xizmat tanlang.</div>
+  {% endif %}
+</section>
+{% endblock %}

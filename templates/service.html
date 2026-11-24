@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ item.name }} — Talaba yordamchisi{% endblock %}
+{% block content %}
+<section class="section narrow">
+  <a class="back" href="{{ url_for('index') }}">← Orqaga</a>
+  <div class="panel">
+    <div class="panel-head">
+      <span class="tile-icon big">{{ item.icon }}</span>
+      <div>
+        <h1>{{ item.name }}</h1>
+        <p class="muted">{{ item.hint }}</p>
+      </div>
+    </div>
+
+    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+
+    <form method="post" class="form">
+      <label>Ismingiz
+        <input type="text" name="name" maxlength="60" required value="{{ form.get('name', name) }}">
+      </label>
+      <label>Mavzu
+        <input type="text" name="topic" maxlength="200" required
+               placeholder="Masalan: Suv resurslarini tejash texnologiyalari"
+               value="{{ form.get('topic', '') }}">
+      </label>
+      <div class="row">
+        <label>Fan
+          <select name="subject">
+            {% for s in subjects %}
+            <option value="{{ s }}" {% if form.get('subject') == s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label>Hajm
+          <select name="size">
+            {% for n in ['5 bet','8 bet','10 bet','12 bet','15 bet','20 bet','8 slayd','10 slayd','12 slayd'] %}
+            <option value="{{ n }}" {% if form.get('size') == n %}selected{% endif %}>{{ n }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </div>
+      <label>Telefon yoki Telegram
+        <input type="text" name="contact" maxlength="40" placeholder="+998 ..." value="{{ form.get('contact', '') }}">
+      </label>
+      <label>Qo'shimcha izoh
+        <textarea name="note" rows="4" maxlength="1000"
+                  placeholder="Talablar, shablon, kitob nomi...">{{ form.get('note', '') }}</textarea>
+      </label>
+      <button class="btn wide" type="submit">Buyurtma berish</button>
+      <p class="muted small">Buyurtma qabul qilingach, operator siz bilan bog'lanadi.</p>
+    </form>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Talaba yordamchisi{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}">
+    <span class="logo">T</span>
+    <span>Talaba yordamchisi</span>
+  </a>
+  <nav class="topnav">
+    <a href="{{ url_for('index') }}">Bosh sahifa</a>
+    <a href="{{ url_for('my_orders') }}">Buyurtmalarim</a>
+    <a class="btn-mini" href="{{ url_for('index') }}#xizmatlar">Xizmatlar</a>
+  </nav>
+</header>
+<main class="wrap">
+{% block content %}{% endblock %}
+</main>
+<footer class="foot">
+  <div>Talaba yordamchisi — o'quv ishlari uchun onlayn xizmat</div>
+  <div class="muted">Bot: Telegram'da ham ishlaydi</div>
+</footer>
+</body>
+</html>

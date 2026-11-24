@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section narrow">
+  <h1>Buyurtmalarim{% if name %}: {{ name }}{% endif %}</h1>
+  {% if rows %}
+  <table class="table">
+    <thead><tr><th>Xizmat</th><th>Mavzu</th><th>Hajm</th><th>Sana</th></tr></thead>
+    <tbody>
+      {% for r in rows %}
+      <tr><td>{{ r.service }}</td><td>{{ r.topic }}</td><td>{{ r.size }}</td><td class="muted">{{ r.created_at }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty">Bu ism bo'yicha buyurtma topilmadi. Bosh sahifada ismingizni saqlang.</div>
+  {% endif %}
+</section>
+{% endblock %}
