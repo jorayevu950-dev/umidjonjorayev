@@ -1,0 +1,11 @@
+HOSTING (kompyuter o'chsa ham ishlaydi):
+1) railway.app -> New Project -> GitHub repo yukla
+2) Variables: BOT_TOKEN, GEMINI_API_KEY
+3) Deploy. keys.txt ni GitHub ga yuklama!
+
+TEZLIK HAQIDA ROST GAP:
+10 ta ish 5 minutda faqat TEZ rejimda: /toplam, standart reja, rasmsiz, AI kutmaydi.
+To'liq AI + 5 rasmli 10 ta ish 5 minutda bo'lmaydi - bitta AI javobi o'zi 30-60 soniya.
+
+ELON: /elon Matn -> /elon_yuborish
+TOPLAM: /toplam -> 10 tagacha mavzu qatorma-qator

@@ -1,0 +1,1 @@
+keys.txt dan tashqari hammasini almashtiring, __pycache__ ni o'chiring, qayta ishga tushiring.

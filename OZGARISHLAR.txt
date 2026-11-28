@@ -1,0 +1,34 @@
+TUZATILGAN FAYLLAR  (dastur papkasidagi eski fayllar o'rniga qo'ying)
+=====================================================================
+Botni to'xtating (2_TOXTATISH.bat), fayllarni almashtiring, qayta ishga tushiring.
+keys.txt, workflow.py va boshqa fayllarga TEGILMAGAN.
+
+1) bot.py  - eng katta sekinlik sababi
+   * Bot update'larni NAVBAT bilan qayta ishlardi: bitta talaba ish tayyorlatayotganda
+     (1-3 daqiqa) boshqa hamma kutib turardi, tugmalar "Query is too old" xatosini berardi.
+     Endi concurrent_updates(16): hamma bir vaqtda xizmat oladi.
+   * Bir foydalanuvchi ish tayyorlanayotganda ikkinchi marta bossa - ikkinchi ish boshlanmaydi.
+   * Vaqt tugab oflayn rejimga o'tilganda orqa fondagi AI so'rovlari to'xtatiladi
+     (avval ular davom etib, balansni sarflayverardi).
+   * Fayl nomiga foydalanuvchi raqami qo'shildi (bir soniyada ikki kishi - fayl/rasm aralashmasin).
+
+2) ai_engine.py - "AI 150 soniyada javob bermadi" va noto'g'ri (oflayn) natija sababi
+   * Bitta so'rov 4 ta modelni ketma-ket sinab 200 soniyagacha cho'zilishi mumkin edi.
+     Endi har so'rov qolgan vaqt byudjetidan oshmaydi.
+   * Boblar yozilgach byudjet tugagan bo'lsa, HAMMA tayyor matn tashlab yuborilib, oflayn
+     shablon berilardi. Endi tayyor boblar saqlanadi, kirish/xulosa uchun alohida 40 soniya beriladi.
+     (Boblarning yarmidan ko'pi yozilmasa - avvalgidek oflayn rejim.)
+   * Vaqt byudjeti, jarayon ko'rsatkichi va "o'chirgich" avval BARCHA foydalanuvchilar uchun
+     umumiy edi - endi har so'rov uchun alohida (bir nechta kishi bir vaqtda ishlasa kerak).
+   * O'chirgich: 2 xatoda 90 soniya emas, 3 xatoda 45 soniya.
+
+3) config.py - AI_BUDGET 100 -> 90, GENERATE_TIMEOUT 150 -> 180 (keys.txt da o'zgartirsa bo'ladi).
+
+4) image_finder.py - rasmlar uchun umumiy chegara 40 soniya. Avval sekin Wikimedia
+   butun ishni kutdirib, tayyor matnni ham "vaqt tugadi" bilan yo'qotishi mumkin edi.
+
+5) ocr_word.py, tools.py - vaqtinchalik fayl nomlari noyob qilindi (ikki kishi bir vaqtda
+   rasmni matnga aylantirsa, bir-birining faylini buzmasligi uchun).
+
+6) diagnostika.py (3_DIAGNOSTIKA.bat) - endi asosiy va zaxira AI serverga haqiqiy so'rov yuborib,
+   tezligini o'lchaydi va qaysi model sekin ekanini ko'rsatadi.
